@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Phoenix Framework">
+      <%= assigns[:page_title] || "Tasker" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body class="bg-ppColored-light">
+    <header class="relative px-4 pt-1 pb-1 justify-between items-center bg-ppColored-dark text-white">
+      <a href={~p"/"}>
+        <div class="text-rozy" style="font-family:MaFonte;font-weight:normal;font-style:normal"><span id="app-name">TASKER</span></div>
+      </a>
+      <div style=" font-family:PAvenir;font-weight:100;font-style:normal;">Le gestionnaire de tâche le plus léger du monde.</div>
+       
+      <div 
+        id="header-bloc-user" 
+        class="absolute block right-8 top-2 bg-blue-500 w-100 h-10 rounded-full"
+        phx-click="toggle_menu_avatar"
+        >
+        <button 
+          id="avatar" 
+          class="block w-10 h-10 bg-red-500 rounded-full fleche-droite"
+          phx-click={TaskerWeb.Layouts.App.toggle_menu_avatar}
+          >
+          <% 
+            image_name = if @current_user do
+              "#{@current_user.id}_avatar.jpg"
+            else
+              "default_avatar.png"
+            end
+          %>
+          <img class="rounded-full" src={~p"/images/users/#{image_name}"} />
+        </button>
+        <div 
+          id="main-menu-user"
+          class="absolute"
+          hidden="true"
+          >
+          <%= if @current_user do %>
+            <.link
+              href={~p"/users/settings"}
+              method="get"
+              class=""
+              tabindex="-1"
+            >
+              <%= gettext("Settings") %>
+            </.link>
+
+            <.link
+            href={~p"/users/log_out"}
+            method="delete"
+            class=""
+            tabindex="-1"
+          >
+          <%= gettext("Log out") %>
+          </.link>
+
+          <% else %>
+
+            <.link
+            href={~p"/users/register"}
+            class=""
+            tabindex="-1"
+          >
+            S'inscrire
+          </.link>
+          <.link
+            href={~p"/users/log_in"}
+            class=""
+            tabindex="-1"
+          >
+          <%= gettext("Sign in") %>
+          </.link>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <.flash_group flash={@flash} />
+
+    <%= @inner_content %>
+    <footer>
+      [PIED DE PAGE]
+    </footer>
+
+  </body>
+</html>

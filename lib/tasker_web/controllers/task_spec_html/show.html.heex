@@ -1,0 +1,19 @@
+<.header>
+  Task spec <%= @task_spec.id %>
+  <:subtitle>This is a task_spec record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/task_specs/#{@task_spec}/edit"}>
+      <.button>Edit task_spec</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Titre"><%= @task_spec.titre %></:item>
+  <:item title="Contenu"><%= @task_spec.contenu %></:item>
+  <:item title="Description"><%= @task_spec.description %></:item>
+  <:item title="Note"><%= @task_spec.note %></:item>
+  <:item title="Script"><%= @task_spec.script %></:item>
+</.list>
+
+<.back navigate={~p"/task_specs"}>Back to task_specs</.back>

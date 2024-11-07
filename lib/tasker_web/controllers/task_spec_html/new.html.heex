@@ -1,0 +1,12 @@
+<.header>
+  Nouvelle tâche (specs)
+</.header>
+
+<.task_spec_form 
+  changeset={@changeset} 
+  action={~p"/task_specs"}
+  phx-update="validate"
+  >
+</.task_spec_form>
+
+<.back navigate={~p"/task_specs"}>Retour à la liste des tâches (specs)</.back>

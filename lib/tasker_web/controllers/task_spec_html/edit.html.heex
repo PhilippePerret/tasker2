@@ -1,0 +1,8 @@
+<.header>
+  Edit Task spec <%= @task_spec.id %>
+  <:subtitle>Use this form to manage task_spec records in your database.</:subtitle>
+</.header>
+
+<.task_spec_form changeset={@changeset} action={~p"/task_specs/#{@task_spec}"} />
+
+<.back navigate={~p"/task_specs"}>Back to task_specs</.back>

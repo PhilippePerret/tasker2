@@ -1,0 +1,11 @@
+<.header>
+  Nouvelle tâche
+  <:subtitle>Utiliser ce formulaire pour enregistrer une nouvelle tâche.</:subtitle>
+</.header>
+
+<.task_form 
+  changeset={@changeset} 
+  action={~p"/tasks"} 
+  >
+</.task_form>
+<.back navigate={~p"/tasks"}>Retour à la liste des tâches</.back>
